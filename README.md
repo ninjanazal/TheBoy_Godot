@@ -1,2 +1,2 @@
-# FarmerStory
-Mobile Game based on Farming and Friends;
+# Voxel Story
+Mobile Platform game on a voxel style;
