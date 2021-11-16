@@ -7,16 +7,17 @@ opts = Variables([], ARGUMENTS)
 env = DefaultEnvironment()
 
 env.Replace(  CCCOMSTR        = "Compiling  [$SOURCE]",
-              CXXCOMSTR       = "Compiling  [$SOURCE]",
-              FORTRANPPCOMSTR = "Compiling  [$SOURCE]",
-              FORTRANCOMSTR   = "Compiling  [$SOURCE]",
-              SHCCCOMSTR      = "Compiling  [$SOURCE]",
-              SHCXXCOMSTR     = "Compiling  [$SOURCE]",
-              LINKCOMSTR      = "Linking    [$TARGET]",
-              SHLINKCOMSTR    = "Linking    [$TARGET]",
-              INSTALLSTR      = "Installing [$TARGET]",
-              ARCOMSTR        = "Archiving  [$TARGET]",
-              RANLIBCOMSTR    = "Ranlib     [$TARGET]")
+			CXXCOMSTR       = "Compiling  [$SOURCE]",
+			FORTRANPPCOMSTR = "Compiling  [$SOURCE]",
+			FORTRANCOMSTR   = "Compiling  [$SOURCE]",
+			SHCCCOMSTR      = "Compiling  [$SOURCE]",
+			SHCXXCOMSTR     = "Compiling  [$SOURCE]",
+			LINKCOMSTR      = "Linking    [$TARGET]",
+			SHLINKCOMSTR    = "Linking    [$TARGET]",
+			INSTALLSTR      = "Installing [$TARGET]",
+			ARCOMSTR        = "Archiving  [$TARGET]",
+			RANLIBCOMSTR    = "Ranlib     [$TARGET]"
+)
 
 
 # Define our options
@@ -116,14 +117,14 @@ sources = Glob('src/*.cpp')
 
 modules = []
 for root, dirnames, filenames in os.walk('src'):
-  for dir in dirnames:
-      modules.append(os.path.join(root,dir))
+	for dir in dirnames:
+		modules.append(os.path.join(root,dir))
 
 print('Dir Count -> ' + str(len(modules)))
 
 for module in modules:
-    sources += Glob(os.path.join(module, '*.cpp'))
-    env.Append(CPPPATH=[module])
+	sources += Glob(os.path.join(module, '*.cpp'))
+	env.Append(CPPPATH=[module])
 
 library = env.SharedLibrary(target=env['target_path'] + env['target_name'] , source=sources)
 
@@ -140,23 +141,23 @@ node_count_interval = 1
 node_count_fname = str(env.Dir('#')) + '/.scons_node_count'
 
 def progress_function(node):
-    global node_count, node_count_max, node_count_interval, node_count_fname
-    node_count += node_count_interval
-    if node_count > node_count_max: node_count_max = 0
-    if node_count_max>0 :
-        screen.write('\r[%3d%%] ' % (node_count*100/node_count_max))
-        screen.flush()
+	global node_count, node_count_max, node_count_interval, node_count_fname
+	node_count += node_count_interval
+	if node_count > node_count_max: node_count_max = 0
+	if node_count_max>0 :
+		screen.write('\r[%3d%%] ' % (node_count*100/node_count_max))
+		screen.flush()
 
 def progress_finish(target, source, env):
     global node_count
     with open(node_count_fname, 'w') as f: f.write('%d\n' % node_count)
 
 try:
-    with open(node_count_fname) as f: node_count_max = int(f.readline())
+	with open(node_count_fname) as f: node_count_max = int(f.readline())
 except: pass
 Progress(progress_function, interval=node_count_interval)
 
 progress_finish_command = Command('progress_finish', [], progress_finish)
 Depends(progress_finish_command, BUILD_TARGETS)
 if 'progress_finish' not in BUILD_TARGETS:     
-    BUILD_TARGETS.append('progress_finish')
+	BUILD_TARGETS.append('progress_finish')
