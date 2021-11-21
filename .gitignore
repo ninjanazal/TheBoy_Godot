@@ -10,3 +10,15 @@ data_*/
 
 # vscode folder
 .vscode/
+
+#build files
+bin/
+
+# Compilation objects
+*.obj
+*.idb
+*.pdb
+
+# Help file
+.scons_node_count
+.sconsign.dblite
