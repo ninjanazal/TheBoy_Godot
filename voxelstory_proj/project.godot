@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "IncubatedThrd",
+"language": "GDScript",
+"path": "res://src/game_classes/incubate_thread.gd"
+}, {
+"base": "Reference",
+"class": "PlayerClass",
+"language": "GDScript",
+"path": "res://src/game_classes/instance_state.gd"
+}, {
+"base": "Resource",
+"class": "ScenePack",
+"language": "GDScript",
+"path": "res://src/scripted_resources/scene_reference.gd"
+} ]
+_global_script_class_icons={
+"IncubatedThrd": "",
+"PlayerClass": "",
+"ScenePack": ""
+}
+
 [application]
 
 config/name="Voxel Party"

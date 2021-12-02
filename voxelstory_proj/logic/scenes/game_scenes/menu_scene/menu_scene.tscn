@@ -23,8 +23,9 @@ __meta__ = {
 }
 
 [node name="Viewport" type="Viewport" parent="Control/ViewportContainer"]
-size = Vector2( 1920, 1080 )
+size = Vector2( 960, 540 )
 handle_input_locally = false
+render_target_update_mode = 3
 
 [node name="3d_view" type="Spatial" parent="Control/ViewportContainer/Viewport"]
 
@@ -48,6 +49,7 @@ transform = Transform( 0.934058, -0.268453, -0.235519, 0.351262, 0.809601, 0.470
 light_color = Color( 0.933333, 0.913725, 0.839216, 1 )
 light_energy = 0.3
 shadow_enabled = true
+shadow_bias = 0.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 anchor_right = 0.6
