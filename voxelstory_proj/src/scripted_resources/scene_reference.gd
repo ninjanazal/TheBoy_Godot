@@ -5,7 +5,7 @@ class_name ScenePack
 # - - - - - - - - - -
 # Exported var holding the menu scene packed
 # - - - - - - - - - -
-export (PackedScene) var menu_scene setget get_menu_scene;
+export (PackedScene) var menu_scene setget ,get_menu_scene;
 
 
 # ###################################|
