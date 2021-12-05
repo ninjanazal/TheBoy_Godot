@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://logic/scenes/game_objects/2D/godot_logo/godot_logo_sub.tscn" type="PackedScene" id=1]
-[ext_resource path="res://logic/script/intro_scene/loader/loadermanager.gd" type="Script" id=2]
+[ext_resource path="res://logic/scenes/game_scenes/intro/script/loadermanager.gd" type="Script" id=2]
 [ext_resource path="res://logic/scenes/game_scenes/intro/_ress/game_intro_anim.tres" type="Animation" id=3]
 
 [node name="intro_scene" type="Node"]

@@ -9,7 +9,9 @@ class_name GameTypes
 # - - - - - - - - - -
 enum kTYPES {
 	APPLICATION = 0,
-	GAMEMASTER = 1
+	GAMEMASTER = 1,
+	LOADMANAGER = 2,
+	INCUBATED = 3
 };
 
 

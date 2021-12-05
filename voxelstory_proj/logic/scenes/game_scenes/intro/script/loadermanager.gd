@@ -27,6 +27,25 @@ func _ready():
 	__reset_animators();
 	_components.main_player.play();
 
+	var __created_thread = Application.request_incubate_thread('main_menu_load');
+	__created_thread.define_thread_action(TaskTypes, 'load_menu_scene', __created_thread);
+
+	Application.print_msg(
+		GameTypes.kTYPES.LOADMANAGER, 'Requesting a load main menu scene on a thread'
+	);
+
+	if(!__created_thread.start_task()):
+		Application.print_msg(
+			GameTypes.kTYPES.LOADMANAGER,
+			'Failed to start the main menu scene load on a thread'
+		);
+	else:
+		Application.print_msg(
+			GameTypes.kTYPES.LOADMANAGER,
+			'Task Started on a thread with success!'
+		);
+
+
 
 
 # - - - - - - - - - -

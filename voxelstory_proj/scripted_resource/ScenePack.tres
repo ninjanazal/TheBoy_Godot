@@ -1,6 +1,7 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://src/scripted_resources/scene_reference.gd" type="Script" id=1]
+[ext_resource path="res://scripted_resource/scripted_resources/scene_reference.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
+menu_scene_path = "res://logic/scenes/game_scenes/menu_scene/menu_scene.tscn"

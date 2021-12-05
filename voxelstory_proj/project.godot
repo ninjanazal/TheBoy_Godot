@@ -27,13 +27,19 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "ScenePack",
 "language": "GDScript",
-"path": "res://src/scripted_resources/scene_reference.gd"
+"path": "res://scripted_resource/scripted_resources/scene_reference.gd"
+}, {
+"base": "Reference",
+"class": "TaskTypes",
+"language": "GDScript",
+"path": "res://src/game_classes/task_tipes.gd"
 } ]
 _global_script_class_icons={
 "GameTypes": "",
 "IncubatedThrd": "",
 "PlayerClass": "",
-"ScenePack": ""
+"ScenePack": "",
+"TaskTypes": ""
 }
 
 [application]
@@ -48,7 +54,7 @@ config/icon="res://assets/graphics/logos/voxelLogo.png"
 
 [autoload]
 
-Application="*res://logic/script/Application/application.gd"
+Application="*res://src/Application/application.gd"
 
 [display]
 

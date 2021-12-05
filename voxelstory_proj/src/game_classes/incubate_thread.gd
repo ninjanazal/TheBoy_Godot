@@ -7,14 +7,75 @@ var __thrd__ : Thread = Thread.new();
 
 
 # - - - - - - - - - -
-# Func Refecerence to be triggered on the incubated thread
+# Holds the thread name
 # - - - - - - - - - -
-var __task__ : Reference= null;
+var __name__ : String = '';
 
 
 # - - - - - - - - - -
-# Incubate thread constructor, a func reference should be passed
-# @task (FuncRef): Reference to the needed task
+# Task components needed to handle a threaded task
 # - - - - - - - - - -
-func _init(task : FuncRef):
-	self.__task__ = task;
+var __task__ : Dictionary= {
+	'target_obj' : null,
+	'method' : null,
+	'params' : null
+};
+
+
+# ###################################|
+#               PUBLIC               |
+# ###################################|
+
+
+# - - - - - - - - - -
+# Defines the task for the 
+# - - - - - - - - - -
+func define_thread_action(target_obj : Object, method : String, params = null):
+	__task__.target_obj = target_obj;
+	__task__.method = method;
+	__task__.params = params;
+
+
+# - - - - - - - - - -
+# Starts a defined task
+# Return (bool): True/False if was able to start
+# - - - - - - - - - -
+func start_task()-> bool:
+	var _validator = __task__.target_obj != null &&\
+			__task__.method != null;
+	if(!_validator):
+		return false;
+	
+	Application.validate_operation(
+		__thrd__.start(
+			__task__.target_obj,
+			__task__.method,
+			__task__.params
+	));
+	return true;
+
+
+# - - - - - - - - - -
+# Should be called from the thread, informing the conclusion
+# - - - - - - - - - -
+func task_finished():
+	Application.print_msg(
+		GameTypes.kTYPES.INCUBATED,
+		'\'%s\' thread just finished' % __name__
+	);
+
+	Application.remove_incubate_thread(__name__);
+
+
+
+# ###################################|
+#               PRIVATE              |
+# ###################################|
+
+
+# - - - - - - - - - -
+# Incubate thread constructor
+# @thread_name (String): Current thread name
+# - - - - - - - - - -
+func _init(thread_name : String):
+	__name__ = thread_name;

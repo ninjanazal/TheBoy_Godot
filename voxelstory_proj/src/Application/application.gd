@@ -18,9 +18,24 @@ var __inner_player : Reference = null;
 var __thread_incubator : Dictionary = {};
 
 
+# - - - - - - - - - -
+# Holds a reference to the scenePack resource object
+# The path to this file should be static
+# - - - - - - - - - -
+onready var __scene_referencer = preload('res://scripted_resource/ScenePack.tres');
+
+
 # ###################################|
 #               PUBLIC               |
 # ###################################|
+
+
+# - - - - - - - - - -
+# Gets a reference to the scene referencer object
+# Return (Reference): reference to the scene referencer object
+# - - - - - - - - - -
+func scene_referencer():
+	return __scene_referencer;
 
 
 # - - - - - - - - - -
@@ -42,6 +57,22 @@ func print_msg(type_id : int,  msg : String):
 		GameTypes.kTYPES.keys()[type_id],
 		msg
 	]);
+
+
+# - - - - - - - - - -
+# Request an incubate thread instance
+# Return (Reference): Created thread reference
+# - - - - - - - - - -
+func request_incubate_thread(incubate_name : String):
+	__thread_incubator[incubate_name] = IncubatedThrd.new(incubate_name);
+	return __thread_incubator[incubate_name];
+
+
+# - - - - - - - - - -
+# Removes a incubated thread from the thread pool
+# - - - - - - - - - -
+func remove_incubate_thread(incubate_name : String)-> bool:
+	return __thread_incubator.erase(incubate_name);
 
 
 # ###################################|
