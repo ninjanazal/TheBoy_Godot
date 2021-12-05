@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
+transition_scene_path = "res://logic/scenes/game_scenes/transition_scene/transition_scene.tscn"
 menu_scene_path = "res://logic/scenes/game_scenes/menu_scene/menu_scene.tscn"

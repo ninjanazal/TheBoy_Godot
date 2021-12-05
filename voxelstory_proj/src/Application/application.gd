@@ -13,9 +13,15 @@ var __inner_player : Reference = null;
 
 
 # - - - - - - - - - -
-# Holds a reference to the created hosting threads
+# Holds a reference to the created hosticng threads
 # - - - - - - - - - -
 var __thread_incubator : Dictionary = {};
+
+
+# - - - - - - - - - -
+# Holds a reference to the application state machine
+# - - - - - - - - - -
+var __app_machine : StateMachine = null;
 
 
 # - - - - - - - - - -
@@ -94,6 +100,18 @@ func _enter_tree():
 # Ready Godot API override
 # - - - - - - - - - -
 func _ready():
+
+
+	print_msg(
+		GameTypes.kTYPES.APPLICATION,
+		'Requesting thread for transition loading'
+	);
+	var _requested_thread = request_incubate_thread('transition_load');
+	_requested_thread.define_thread_action(
+		TaskTypes, 'load_transition_scene', _requested_thread
+	);
+	_requested_thread.start_task();
+
 	print_msg(
 		GameTypes.kTYPES.APPLICATION,
 		'Loading player state configuration ...'

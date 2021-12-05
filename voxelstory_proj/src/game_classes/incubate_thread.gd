@@ -44,6 +44,10 @@ func start_task()-> bool:
 	var _validator = __task__.target_obj != null &&\
 			__task__.method != null;
 	if(!_validator):
+		Application.print_msg(
+			GameTypes.kTYPES.INCUBATED,
+			'Failed to start the main menu scene load on a thread'
+		);
 		return false;
 	
 	Application.validate_operation(
@@ -52,6 +56,11 @@ func start_task()-> bool:
 			__task__.method,
 			__task__.params
 	));
+	
+	Application.print_msg(
+			GameTypes.kTYPES.INCUBATED,
+			'Task Started on a thread with success!'
+		);
 	return true;
 
 

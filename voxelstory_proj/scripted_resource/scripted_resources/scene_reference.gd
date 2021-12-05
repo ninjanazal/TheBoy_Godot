@@ -3,9 +3,26 @@ class_name ScenePack
 
 
 # - - - - - - - - - -
+# Exported var holding the transition scene path
+# - - - - - - - - - -
+export (String) var transition_scene_path setget ,getTransitionScenePath;
+
+
+# - - - - - - - - - -
+# Exported var holding the menu scene path
+# - - - - - - - - - -
+export (String) var menu_scene_path setget ,getMenuScenePath;
+
+
+# - - - - - - - - - -
 # Loads a reference for the allready loaded scenes
 # - - - - - - - - - -
 var __loaded_scenes : Dictionary = {
+
+	'transition' : {
+		'percent' : 0.0,
+		'reference' : null
+	},
 
 	'menu_scene' : {
 		'percent' : 0.0,
@@ -18,11 +35,6 @@ var __loaded_scenes : Dictionary = {
 	}
 }
 
-# - - - - - - - - - -
-# Exported var holding the menu scene packed
-# - - - - - - - - - -
-export (String) var menu_scene_path setget ,getMenuScenePath;
-
 
 # ###################################|
 #               PUBLIC               |
@@ -30,8 +42,16 @@ export (String) var menu_scene_path setget ,getMenuScenePath;
 
 
 # - - - - - - - - - -
-# Gets the packed menu scene
-# Return (Packed Scene): Packed Menu Scene
+# Gets the path to the transition scene
+# Return (String): Transition Scene Path
+# - - - - - - - - - -
+func getTransitionScenePath()-> String:
+	return transition_scene_path;
+
+
+# - - - - - - - - - -
+# Gets the path to the menu scene
+# Return (String): Menu Scene Path
 # - - - - - - - - - -
 func getMenuScenePath()-> String:
 	return menu_scene_path;

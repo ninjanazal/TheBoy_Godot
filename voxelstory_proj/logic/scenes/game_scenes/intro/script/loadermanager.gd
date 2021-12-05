@@ -33,18 +33,7 @@ func _ready():
 	Application.print_msg(
 		GameTypes.kTYPES.LOADMANAGER, 'Requesting a load main menu scene on a thread'
 	);
-
-	if(!__created_thread.start_task()):
-		Application.print_msg(
-			GameTypes.kTYPES.LOADMANAGER,
-			'Failed to start the main menu scene load on a thread'
-		);
-	else:
-		Application.print_msg(
-			GameTypes.kTYPES.LOADMANAGER,
-			'Task Started on a thread with success!'
-		);
-
+	__created_thread.start_task();
 
 
 
