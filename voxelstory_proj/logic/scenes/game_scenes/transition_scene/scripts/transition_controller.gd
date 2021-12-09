@@ -12,7 +12,8 @@ onready var _components : Dictionary  = {
 # - - - - - - - - - -
 var _scene_refs : Dictionary = {
 	'current_scene' : null,
-	'next_scene' : null
+	'next_scene' : null,
+	'on_end' : null
 };
 
 
@@ -24,10 +25,24 @@ var _scene_refs : Dictionary = {
 # Defines the transition setup
 # @current_scene_ref (Reference): Reference to the current scene, this will be released
 # @to_scene_ref (Reference): Reference to the next scene
+# @on_transition_end (FuncRef): Define a function to be called at the transition end
 # - - - - - - - - - -
-func setUp(current_scene_ref, to_scene_ref):
+func setUp(current_scene_ref, to_scene_ref, on_transition_end : FuncRef = null):
 	_scene_refs.current_scene = current_scene_ref;
 	_scene_refs.next_scene = to_scene_ref;
+
+	_scene_refs.on_end = on_transition_end;
+
+
+# - - - - - - - - - -
+# Triggers a start transition animation, this can be waited
+# On animation finished will call the callback function defined on the setup
+# - - - - - - - - - -
+func trigger_transition():
+	_components.animation.play('transition_1');
+	yield(_components.animation, 'animation_finished');
+	if(_scene_refs.on_end):
+		_scene_refs.on_end.call_func();
 
 
 # - - - - - - - - - -

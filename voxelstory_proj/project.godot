@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "AppTransitions",
+"language": "GDScript",
+"path": "res://src/state_machine/transitions/apptransitions.gd"
+}, {
+"base": "Reference",
 "class": "GameStates",
 "language": "GDScript",
 "path": "res://src/game_classes/game_states.gd"
@@ -50,6 +55,7 @@ _global_script_classes=[ {
 "path": "res://src/game_classes/task_tipes.gd"
 } ]
 _global_script_class_icons={
+"AppTransitions": "",
 "GameStates": "",
 "GameTypes": "",
 "IncubatedThrd": "",

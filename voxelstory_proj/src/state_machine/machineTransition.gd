@@ -6,11 +6,6 @@ class_name MachineTransition
 #                                                              |
 # -------------------------------------------------------------|
 
-# - - - - - - - - - -
-# Holds the transition name
-# - - - - - - - - - -
-var __name__ : String;
-
 
 # - - - - - - - - - -
 # Holds possible from array
@@ -52,11 +47,9 @@ func verifyFromState(target_state : int)-> bool:
 
 # - - - - - - - - - -
 # Transition constructor function
-# @name (String): Transition Name
 # @from (Array): Array with the from possible states
 # @to (int): To State enum value
 # - - - - - - - - - -
-func _init(name : String, from : Array, to : int):
-	__name__ = name;
+func _init(from : Array, to : int):
 	__from__ = from;
 	__to__ = to;

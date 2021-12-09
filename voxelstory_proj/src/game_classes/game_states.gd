@@ -12,6 +12,13 @@ class_name GameStates
 # - - - - - - - - - -
 enum kAPPSTATES {
 	ANY,
+	# Application boot
 	INTRO,
-	MENU
+	MAIN_MENU,
+
+	# Local multiplayer server
+	CREATING_SERVER
+
+	# Multiplayer Connections
+	CONNECTING_TO_SERVER
 };

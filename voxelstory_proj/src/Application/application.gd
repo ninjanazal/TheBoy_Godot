@@ -19,9 +19,9 @@ var __thread_incubator : Dictionary = {};
 
 
 # - - - - - - - - - -
-# Holds a reference to the application state machine
+# Holds a reference to the app behavior node
 # - - - - - - - - - -
-var __app_machine : StateMachine = null;
+var app_behavior : Node = null;
 
 
 # - - - - - - - - - -
@@ -94,14 +94,14 @@ func _enter_tree():
 		GameTypes.kTYPES.APPLICATION,
 		'Application started ...'
 	);
+	app_behavior = AppBehavior.new();
+	add_child(app_behavior);
 
 
 # - - - - - - - - - -
 # Ready Godot API override
 # - - - - - - - - - -
 func _ready():
-
-
 	print_msg(
 		GameTypes.kTYPES.APPLICATION,
 		'Requesting thread for transition loading'
