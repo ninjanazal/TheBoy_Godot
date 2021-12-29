@@ -41,6 +41,17 @@ var _last_state : int = 0;
 
 
 # - - - - - - - - - -
+# Forces the current state, this will trigger the stateChanged signal
+# @target_state (int): Target state enum value
+# - - - - - - - - - -
+func define_state(target_state : int):
+	_last_state = _current_state;
+	_current_state = target_state;
+
+	emit_signal('stateChanged', _current_state);
+
+
+# - - - - - - - - - -
 # Function used to request a machine state switch based on a transition name
 # @transition_name (String): Target transition name
 # - - - - - - - - - -

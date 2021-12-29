@@ -104,8 +104,11 @@ func _enter_tree():
 func _ready():
 	print_msg(
 		GameTypes.kTYPES.APPLICATION,
-		'Requesting thread for transition loading'
+		'Application requesting start behavior'
 	);
+
+	app_behavior.start_machine();
+
 	var _requested_thread = request_incubate_thread('transition_load');
 	_requested_thread.define_thread_action(
 		TaskTypes, 'load_transition_scene', _requested_thread

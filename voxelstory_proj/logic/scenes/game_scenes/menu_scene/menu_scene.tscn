@@ -10,58 +10,48 @@ size = Vector2( 9, 10 )
 
 [node name="menu_scene" type="Node"]
 
-[node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="3d_view" type="Spatial" parent="."]
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Viewport" type="Viewport" parent="Control/ViewportContainer"]
-size = Vector2( 1920, 1080 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="3d_view" type="Spatial" parent="Control/ViewportContainer/Viewport"]
-
-[node name="Camera" type="Camera" parent="Control/ViewportContainer/Viewport/3d_view"]
-transform = Transform( 0.707107, 0.353553, -0.612373, 0, 0.866026, 0.5, 0.707107, -0.353553, 0.612373, -2.66572, 2.07003, 0.609635 )
+[node name="Camera" type="Camera" parent="3d_view"]
+transform = Transform( 0.707107, 0.298836, -0.640856, 0, 0.906308, 0.422618, 0.707107, -0.298836, 0.640856, -4.67004, 3, 2.41398 )
 cull_mask = 31
 projection = 1
 current = true
 size = 3.0
 far = 10.0
 
-[node name="floor" type="MeshInstance" parent="Control/ViewportContainer/Viewport/3d_view"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43907, 0, -2.86247 )
+[node name="floor" type="MeshInstance" parent="3d_view"]
+transform = Transform( 1.27531, 0, 0, 0, 1, 0, 0, 0, 1.27531, -1.03709, 0, -1.05051 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Control/ViewportContainer/Viewport/3d_view"]
+[node name="DirectionalLight" type="DirectionalLight" parent="3d_view"]
 transform = Transform( 0.934058, -0.268453, -0.235519, 0.351262, 0.809601, 0.470277, 0.0644289, -0.521995, 0.850512, 0, 2.07271, 3.3435 )
 light_color = Color( 0.933333, 0.913725, 0.839216, 1 )
 light_energy = 0.3
 shadow_enabled = true
 shadow_bias = 0.0
+directional_shadow_mode = 1
 
-[node name="PrototypePete" parent="Control/ViewportContainer/Viewport/3d_view" instance=ExtResource( 4 )]
+[node name="PrototypePete" parent="3d_view" instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.27645, 0, -0.378737 )
 
-[node name="character_bear" parent="Control/ViewportContainer/Viewport/3d_view" instance=ExtResource( 1 )]
+[node name="character_bear" parent="3d_view" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89604, 0, -2.62706 )
 
-[node name="character_duck" parent="Control/ViewportContainer/Viewport/3d_view" instance=ExtResource( 3 )]
+[node name="character_duck" parent="3d_view" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.434657, -2.38419e-07, 0.290371 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 anchor_right = 0.6
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -71,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="game_logo" type="TextureRect" parent="Control/VBoxContainer"]
+[node name="game_logo" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer"]
 margin_right = 1132.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 0, 300 )

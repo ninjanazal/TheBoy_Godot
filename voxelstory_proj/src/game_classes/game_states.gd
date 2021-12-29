@@ -12,6 +12,9 @@ class_name GameStates
 # - - - - - - - - - -
 enum kAPPSTATES {
 	ANY,
+	# Restoring the game state, used on startup
+	RESTORE,
+	
 	# Application boot
 	INTRO,
 	MAIN_MENU,

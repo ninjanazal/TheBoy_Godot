@@ -11,10 +11,9 @@ __meta__ = {
 }
 
 [node name="background_color" type="ColorRect" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.113725, 0.113725, 0.113725, 1 )
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,8 +24,8 @@ modulate = Color( 1, 1, 1, 0 )
 [node name="godot_logo" parent="visuals" instance=ExtResource( 1 )]
 position = Vector2( 960, 540 )
 
-[node name="cutoff_rect" parent="visuals/godot_logo" index="1"]
-margin_right = 426.0
+[node name="sprite_logo_head" parent="visuals/godot_logo" index="0"]
+position = Vector2( -25.2063, 0 )
 
 [node name="anim_intro" type="AnimationPlayer" parent="."]
 anims/game_intro = ExtResource( 3 )
