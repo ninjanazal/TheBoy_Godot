@@ -13,12 +13,11 @@ size = Vector2( 9, 10 )
 [node name="3d_view" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="3d_view"]
-transform = Transform( 0.707107, 0.298836, -0.640856, 0, 0.906308, 0.422618, 0.707107, -0.298836, 0.640856, -4.67004, 3, 2.41398 )
+transform = Transform( 0.32389, 0.0313309, -0.945576, 0, 0.999452, 0.033116, 0.946094, -0.0107259, 0.323712, -4.22226, 1.04781, 0.754097 )
 cull_mask = 31
-projection = 1
 current = true
 size = 3.0
-far = 10.0
+far = 50.0
 
 [node name="floor" type="MeshInstance" parent="3d_view"]
 transform = Transform( 1.27531, 0, 0, 0, 1, 0, 0, 0, 1.27531, -1.03709, 0, -1.05051 )
@@ -29,8 +28,8 @@ material/0 = null
 transform = Transform( 0.934058, -0.268453, -0.235519, 0.351262, 0.809601, 0.470277, 0.0644289, -0.521995, 0.850512, 0, 2.07271, 3.3435 )
 light_color = Color( 0.933333, 0.913725, 0.839216, 1 )
 light_energy = 0.3
+light_bake_mode = 2
 shadow_enabled = true
-shadow_bias = 0.0
 directional_shadow_mode = 1
 
 [node name="PrototypePete" parent="3d_view" instance=ExtResource( 4 )]

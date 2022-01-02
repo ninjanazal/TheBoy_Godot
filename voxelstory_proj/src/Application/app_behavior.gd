@@ -50,10 +50,37 @@ func _enter_tree():
 
 
 # - - - - - - - - - -
+# ! Current Mocked
+# Loads a player state information
+# Return (Reference): Loaded player object
+# - - - - - - - - - -
+func __load_player()-> Reference:
+	Application.print_msg(
+		GameTypes.kTYPES.APPLICATION,
+		'Loading player state configuration ...'
+	);
+
+	var __inner_player = PlayerClass.PlayState.new('Player');
+	return __inner_player;
+
+
+# - - - - - - - - - -
 # Callback funtion for the application state switch
 # @new_state (int): New state enum value
 # - - - - - - - - - -
 func __on_machine_changed__(new_state : int):
 	match new_state:
 		GameStates.kAPPSTATES.RESTORE:
-			pass;
+			Application.set_player(__load_player());
+
+			var _requested_thread = Application.request_incubate_thread('transition_load');
+			_requested_thread.define_thread_action(
+				TaskTypes, 'load_transition_scene', _requested_thread
+			);
+			_requested_thread.start_task();
+
+			__app_machine.attendTransition('gotoIntroScene');
+
+		GameStates.kAPPSTATES.INTRO:
+		
+			Application.main_node.start_animation();

@@ -6,10 +6,23 @@ extends Node;
 #                                                              |
 # -------------------------------------------------------------|
 
+
+# - - - - - - - - - -
+# Constant var holding the scene pack resource path
+# - - - - - - - - - -
+const __SCENE_PACK_PATH : String = 'res://scripted_resource/ScenePack.tres';
+
+
+# - - - - - - - - - -
+# Holds a reference to the scenePack resource object
+# The path to this file should be static
+# - - - - - - - - - -
+onready var __scene_referencer = preload(__SCENE_PACK_PATH);
+
 # - - - - - - - - - -
 # Holds an instance of the current playState informations
 # - - - - - - - - - -
-var __inner_player : Reference = null;
+var __inner_player : Reference = null setget set_player, get_player;
 
 
 # - - - - - - - - - -
@@ -25,10 +38,9 @@ var app_behavior : Node = null;
 
 
 # - - - - - - - - - -
-# Holds a reference to the scenePack resource object
-# The path to this file should be static
+# Holds a reference for the current main node on the tree
 # - - - - - - - - - -
-onready var __scene_referencer = preload('res://scripted_resource/ScenePack.tres');
+var main_node : Node = null;
 
 
 # ###################################|
@@ -81,6 +93,24 @@ func remove_incubate_thread(incubate_name : String)-> bool:
 	return __thread_incubator.erase(incubate_name);
 
 
+# - - - - - - - - - -
+# Defines a new player information
+# @new_player (Reference): New player reference value
+# - - - - - - - - - -
+func set_player(new_player : Reference):
+	if(__inner_player):
+		return;
+	__inner_player = new_player;
+
+
+# - - - - - - - - - -
+# Gets the current player object
+# Return (Reference): Current player reference
+# - - - - - - - - - -
+func get_player()-> Reference:
+	return __inner_player;
+
+
 # ###################################|
 #               PRIVATE              |
 # ###################################|
@@ -109,26 +139,7 @@ func _ready():
 
 	app_behavior.start_machine();
 
-	var _requested_thread = request_incubate_thread('transition_load');
-	_requested_thread.define_thread_action(
-		TaskTypes, 'load_transition_scene', _requested_thread
-	);
-	_requested_thread.start_task();
-
-	print_msg(
-		GameTypes.kTYPES.APPLICATION,
-		'Loading player state configuration ...'
-	);
-
-	__load_player();
-
-
-# - - - - - - - - - -
-# ! Current Mocked
-# Loads a player state information
-# - - - - - - - - - -
-func __load_player():
-	__inner_player = PlayerClass.PlayState.new('Player');
+	#__load_player();
 
 
 # - - - - - - - - - -

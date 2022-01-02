@@ -16,8 +16,27 @@ onready var _components : Dictionary = {
 
 
 # ###################################
+#               PUBLIC              #
+# ###################################
+
+
+# - - - - - - - - - -
+# Starts the intro animation
+# - - - - - - - - - -
+func start_animation():
+	_components.main_player.play();
+
+
+# ###################################
 #               PRIVATE             #
 # ###################################
+
+
+# - - - - - - - - - -
+# Entre tree Godot Api overload
+# - - - - - - - - - -
+func _enter_tree():
+	Application.main_node = self;
 
 
 # - - - - - - - - - -
@@ -25,15 +44,15 @@ onready var _components : Dictionary = {
 # - - - - - - - - - -
 func _ready():
 	__reset_animators();
-	_components.main_player.play();
 
 	var __created_thread = Application.request_incubate_thread('main_menu_load');
 	__created_thread.define_thread_action(TaskTypes, 'load_menu_scene', __created_thread);
 
+	__created_thread.start_task();
+
 	Application.print_msg(
 		GameTypes.kTYPES.LOADMANAGER, 'Requesting a load main menu scene on a thread'
 	);
-	__created_thread.start_task();
 
 
 

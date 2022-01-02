@@ -6,7 +6,6 @@
 [node name="godot_logo" type="Node2D"]
 
 [node name="sprite_logo_head" type="Sprite" parent="."]
-position = Vector2( -268, 0 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 1 )
 region_enabled = true
