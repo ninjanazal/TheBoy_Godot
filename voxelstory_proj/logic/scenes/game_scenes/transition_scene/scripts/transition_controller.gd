@@ -28,6 +28,8 @@ var _scene_refs : Dictionary = {
 # @on_transition_end (FuncRef): Define a function to be called at the transition end
 # - - - - - - - - - -
 func setUp(current_scene_ref, to_scene_ref, on_transition_end : FuncRef = null):
+	__reset();
+
 	_scene_refs.current_scene = current_scene_ref;
 	_scene_refs.next_scene = to_scene_ref;
 
@@ -43,6 +45,9 @@ func trigger_transition():
 	yield(_components.animation, 'animation_finished');
 	if(_scene_refs.on_end):
 		_scene_refs.on_end.call_func();
+	
+	get_parent().remove_child(self);
+	
 
 
 # - - - - - - - - - -
@@ -56,6 +61,7 @@ func changeSceneSet():
 	_scene_refs.current_scene = null;
 
 	parent_reference.add_child(_scene_refs.next_scene);
+	get_tree().set_current_scene(_scene_refs.next_scene);
 
 
 
@@ -65,7 +71,8 @@ func changeSceneSet():
 
 
 # - - - - - - - - - -
-# On ready call
+# Internal function used to reset the animation state
 # - - - - - - - - - -
-func _ready():
-	pass;
+func __reset():
+	_components.animation.set_assigned_animation('transition_1');
+	_components.animation.seek(0.0, true);

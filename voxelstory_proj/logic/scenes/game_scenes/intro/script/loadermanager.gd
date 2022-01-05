@@ -21,10 +21,13 @@ onready var _components : Dictionary = {
 
 
 # - - - - - - - - - -
-# Starts the intro animation
+# Starts the intro animation, and holds until animation completed
 # - - - - - - - - - -
 func start_animation():
 	_components.main_player.play();
+	yield(_components.main_player, "animation_finished");
+	Application.app_behavior.intro_completed();
+
 
 
 # ###################################
@@ -53,7 +56,6 @@ func _ready():
 	Application.print_msg(
 		GameTypes.kTYPES.LOADMANAGER, 'Requesting a load main menu scene on a thread'
 	);
-
 
 
 # - - - - - - - - - -

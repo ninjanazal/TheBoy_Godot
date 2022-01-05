@@ -21,7 +21,7 @@ static func load_transition_scene(requester_thread):
 			ERR_FILE_EOF:
 				Application.scene_referencer().setLoadedReference(
 					'transition',
-					__loader.get_resource()
+					__loader.get_resource().instance()
 				);
 				requester_thread.task_finished();
 				break;
@@ -49,7 +49,7 @@ static func load_menu_scene(requester_thread):
 			ERR_FILE_EOF:
 				Application.scene_referencer().setLoadedReference(
 					'menu_scene',
-					__loader.get_resource()
+					__loader.get_resource().instance()
 				);
 				requester_thread.task_finished();
 				break;

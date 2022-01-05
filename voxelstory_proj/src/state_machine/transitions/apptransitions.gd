@@ -21,6 +21,7 @@ var app_transitions : Dictionary = {
 		[GameStates.kAPPSTATES.RESTORE],
 		GameStates.kAPPSTATES.INTRO
 	),
+	
 	'gotoMainMenu' : MachineTransition.new(
 			[GameStates.kAPPSTATES.INTRO],
 			GameStates.kAPPSTATES.MAIN_MENU

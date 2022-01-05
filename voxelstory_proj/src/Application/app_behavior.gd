@@ -26,6 +26,17 @@ func start_machine():
 	__app_machine.attendTransition('gotoRestoreState');
 
 
+# - - - - - - - - - -
+# Callback funtion to handles the intro state completed
+# - - - - - - - - - -
+func intro_completed():
+	_validation_transition_scene();
+
+
+func __after_to_menu_scene__():
+	__app_machine.attendTransition('gotoMainMenu');
+
+
 
 # ###################################|
 #               PRIVATE              |
@@ -65,11 +76,45 @@ func __load_player()-> Reference:
 
 
 # - - - - - - - - - -
+# Validation funtion used to verify the state of the transition scene reference and the menu scene
+# This will hold the state machine until all needed references are loaded
+# Can be waited
+# - - - - - - - - - -
+func _validation_transition_scene():
+	while(Application.scene_referencer().getLoadPercent('transition') != 1.0 ||\
+			Application.scene_referencer().getLoadPercent('menu_scene') != 1.0):
+		yield(get_tree(), 'idle_frame');
+
+	var transition_scene = Application.scene_referencer().getLoadReference('transition');
+	var main_menu_scene = Application.scene_referencer().getLoadReference('menu_scene');
+
+	if(!transition_scene || !main_menu_scene):
+		Application.print_msg(
+			GameTypes.kTYPES.APPBEHAVIOR,
+			'Transition reference or main menu invalid ... force quiting'
+		);
+
+		Application.validate_operation(GameTypes.kERROR.FAILED);
+
+	get_tree().root.add_child(transition_scene);
+
+	transition_scene.setUp(
+		get_tree().get_current_scene(),
+		main_menu_scene,
+		funcref(self, '__after_to_menu_scene__')
+	);
+
+	transition_scene.trigger_transition();
+
+
+# - - - - - - - - - -
 # Callback funtion for the application state switch
 # @new_state (int): New state enum value
 # - - - - - - - - - -
 func __on_machine_changed__(new_state : int):
 	match new_state:
+		# - - - - - - - - - -
+		# On change to RESTORE
 		GameStates.kAPPSTATES.RESTORE:
 			Application.set_player(__load_player());
 
@@ -81,6 +126,12 @@ func __on_machine_changed__(new_state : int):
 
 			__app_machine.attendTransition('gotoIntroScene');
 
+
+		# - - - - - - - - - -
+		# On change to INTRO
 		GameStates.kAPPSTATES.INTRO:
-		
 			Application.main_node.start_animation();
+
+
+		# - - - - - - - - - -
+		# On change to MAINMENU

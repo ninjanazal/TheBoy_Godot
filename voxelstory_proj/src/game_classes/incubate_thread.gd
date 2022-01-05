@@ -73,7 +73,10 @@ func task_finished():
 		'\'%s\' thread just finished' % __name__
 	);
 
-	Application.remove_incubate_thread(__name__);
+	if(!Application.remove_incubate_thread(__name__)):
+		Application.print_msg(
+			GameTypes.kTYPES.INCUBATED,
+			'Failed to remove incubated thread');
 
 
 

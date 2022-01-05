@@ -57,10 +57,23 @@ func define_state(target_state : int):
 # - - - - - - - - - -
 func attendTransition(transition_name : String):
 	if(__transition_stack__.keys().has(transition_name)):
+		Application.print_msg(
+			GameTypes.kTYPES.FSMACHINE,
+			'Requested a valid transition named ( %s )' % transition_name
+		);
+
 		if(__transition_stack__[transition_name].verifyFromState(_current_state)):
 			_last_state = _current_state;
 			_current_state = __transition_stack__[transition_name].getToState();
 
+			Application.print_msg(
+				GameTypes.kTYPES.FSMACHINE,
+				'Changing machine state from ( %s ) to ( %s )' % [
+					GameStates.kAPPSTATES.keys()[_last_state],
+					GameStates.kAPPSTATES.keys()[_current_state]
+				]
+			);
+			
 			emit_signal('stateChanged', _current_state);
 
 
