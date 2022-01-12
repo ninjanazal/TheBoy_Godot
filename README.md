@@ -1,2 +1,2 @@
-# Voxel Story
-Mobile Platform game on a voxel style;
+# Concept1
+Mobile Platform game concept;
