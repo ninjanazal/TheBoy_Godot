@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/Characters/Bear/character_bear.gltf" type="PackedScene" id=1]
 [ext_resource path="res://assets/graphics/logos/voxelLogo.png" type="Texture" id=2]
 [ext_resource path="res://assets/Characters/Duck/character_duck.gltf" type="PackedScene" id=3]
 [ext_resource path="res://logic/scenes/game_objects/3D/Pete/Pete.tscn" type="PackedScene" id=4]
+[ext_resource path="res://logic/scenes/game_scenes/menu_scene/_res/JetBrains_mono_title.tres" type="DynamicFont" id=5]
 
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 9, 10 )
@@ -13,16 +14,23 @@ size = Vector2( 9, 10 )
 [node name="3d_view" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="3d_view"]
-transform = Transform( 0.32389, 0.0313309, -0.945576, 0, 0.999452, 0.033116, 0.946094, -0.0107259, 0.323712, -4.22226, 1.04781, 0.754097 )
+transform = Transform( -0.100052, 0.0313309, -0.994489, 0.0138134, 0.999452, 0.0300975, 0.994886, -0.0107259, -0.10043, -4.42374, 1.19557, -2.78962 )
 cull_mask = 31
 current = true
 size = 3.0
-far = 50.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="floor" type="MeshInstance" parent="3d_view"]
 transform = Transform( 1.27531, 0, 0, 0, 1, 0, 0, 0, 1.27531, -1.03709, 0, -1.05051 )
 mesh = SubResource( 2 )
 material/0 = null
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="DirectionalLight" type="DirectionalLight" parent="3d_view"]
 transform = Transform( 0.934058, -0.268453, -0.235519, 0.351262, 0.809601, 0.470277, 0.0644289, -0.521995, 0.850512, 0, 2.07271, 3.3435 )
@@ -31,39 +39,102 @@ light_energy = 0.3
 light_bake_mode = 2
 shadow_enabled = true
 directional_shadow_mode = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="PrototypePete" parent="3d_view" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.27645, 0, -0.378737 )
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -1.76699, 0, 0.367717 )
 
 [node name="character_bear" parent="3d_view" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89604, 0, -2.62706 )
+transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -1.50826, 0, -1.53611 )
 
 [node name="character_duck" parent="3d_view" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.434657, -2.38419e-07, 0.290371 )
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.1739, -2.38419e-07, 0.748836 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="front_layer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="menu_main" type="Control" parent="front_layer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
-anchor_right = 0.6
-anchor_bottom = 1.0
+[node name="menu_background" type="ColorRect" parent="front_layer/menu_main"]
+anchor_left = -0.0104167
+anchor_top = -0.0185185
+anchor_right = 0.610417
+anchor_bottom = 1.01852
 margin_left = 20.0
 margin_top = 20.0
 margin_bottom = -20.0
+mouse_filter = 1
+color = Color( 0.027451, 0.027451, 0.027451, 0.313726 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true,
+"_editor_description_": ""
 }
 
-[node name="game_logo" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="front_layer/menu_main/menu_background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="game_logo" type="TextureRect" parent="front_layer/menu_main/menu_background/VBoxContainer"]
 margin_right = 1132.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 0, 300 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
+
+[node name="game_title" type="Label" parent="front_layer/menu_main/menu_background/VBoxContainer"]
+margin_top = 304.0
+margin_right = 1132.0
+margin_bottom = 370.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+text = "Concept1"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="front_layer/menu_main/menu_background/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.298039 )
+margin_top = 374.0
+margin_right = 1132.0
+margin_bottom = 424.0
+custom_constants/separation = 50
+
+[node name="match_container" type="HBoxContainer" parent="front_layer/menu_main/menu_background/VBoxContainer"]
+margin_top = 428.0
+margin_right = 1132.0
+margin_bottom = 628.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+custom_constants/separation = 20
+
+[node name="btn_find" type="Button" parent="front_layer/menu_main/menu_background/VBoxContainer/match_container"]
+margin_right = 556.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "FIND"
+
+[node name="btn_host" type="Button" parent="front_layer/menu_main/menu_background/VBoxContainer/match_container"]
+margin_left = 576.0
+margin_right = 1132.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "HOST"
