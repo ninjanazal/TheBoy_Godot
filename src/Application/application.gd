@@ -120,6 +120,8 @@ func get_player()-> Reference:
 # Enter tree Godot API override
 # - - - - - - - - - -
 func _enter_tree():
+	VisualServer.texture_set_shrink_all_x2_on_set_data(true);
+
 	print_msg(
 		GameTypes.kTYPES.APPLICATION,
 		'Application started ...'

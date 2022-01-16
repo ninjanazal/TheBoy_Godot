@@ -22,3 +22,5 @@ onready var _components : Dictionary = {};
 # - - - - - - - - - -
 func _enter_tree():
 	Application.main_node = self;
+
+	print(str('this is a test value'.to_ascii()));

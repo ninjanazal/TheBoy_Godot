@@ -47,7 +47,6 @@ func _enter_tree():
 # - - - - - - - - - -
 func _ready():
 	__reset_animators();
-
 	var __created_thread = Application.request_incubate_thread('main_menu_load');
 	__created_thread.define_thread_action(TaskTypes, 'load_menu_scene', __created_thread);
 
