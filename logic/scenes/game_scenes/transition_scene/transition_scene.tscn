@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://logic/scenes/game_scenes/transition_scene/scripts/transition_controller.gd" type="Script" id=1]
-[ext_resource path="res://logic/scenes/game_scenes/transition_scene/_res/animations/transition_scenetransition_1.tres" type="Animation" id=2]
+[ext_resource path="res://logic/scenes/game_scenes/transition_scene/_res/animations/transition_scenetransition_1_in.tres" type="Animation" id=2]
+[ext_resource path="res://logic/scenes/game_scenes/transition_scene/_res/animations/transition_scenetransition_1_out.tres" type="Animation" id=3]
 
 [node name="transition_scene" type="CanvasLayer"]
 layer = 20
@@ -18,4 +19,5 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/transition_1 = ExtResource( 2 )
+anims/transition_1_in = ExtResource( 2 )
+anims/transition_1_out = ExtResource( 3 )

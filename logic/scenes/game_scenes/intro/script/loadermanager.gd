@@ -26,8 +26,8 @@ onready var _components : Dictionary = {
 func start_animation():
 	_components.main_player.play();
 	yield(_components.main_player, "animation_finished");
-	Application.app_behavior.intro_completed();
-
+	
+	Application.app_behavior.change_to_menu();
 
 
 # ###################################
@@ -47,14 +47,6 @@ func _enter_tree():
 # - - - - - - - - - -
 func _ready():
 	__reset_animators();
-	var __created_thread = Application.request_incubate_thread('main_menu_load');
-	__created_thread.define_thread_action(TaskTypes, 'load_menu_scene', __created_thread);
-
-	__created_thread.start_task();
-
-	Application.print_msg(
-		GameTypes.kTYPES.LOADMANAGER, 'Requesting a load main menu scene on a thread'
-	);
 
 
 # - - - - - - - - - -

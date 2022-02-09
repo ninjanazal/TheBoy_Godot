@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Characters/Bear/mesh/character_bear_body.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/Characters/Bear/mats/BrownDark.material" type="Material" id=2]
+[ext_resource path="res://assets/Characters/Bear/mats/Black.material" type="Material" id=3]
+[ext_resource path="res://assets/Characters/Bear/mesh/character_bear_R.mesh" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/Characters/Bear/mesh/character_bear_L.mesh" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/Characters/Bear/mesh/character_bear_head.mesh" type="ArrayMesh" id=6]
+
+[node name="Bear_character" type="Spatial"]
+
+[node name="body" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="L_arm" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202206, 0.625185, 0 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 2 )
+
+[node name="R_arm" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.202, 0.63, -0.022 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00543991, 0.670243, 0.000445843 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 2 )

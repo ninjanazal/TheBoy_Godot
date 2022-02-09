@@ -27,20 +27,24 @@ func start_machine():
 
 
 # - - - - - - - - - -
-# Callback funtion to handles the intro state completed
 # - - - - - - - - - -
-func intro_completed():
-	_validation_transition_scene();
+func change_to_menu():
+	if(__app_machine.evaluate_state('gotoMainMenu')):
+		var temp_transition = Application.get_transition();
+		temp_transition.setUp(
+			get_tree().get_current_scene(),
+			Application.scene_referencer().getMenuScenePath(),
+			funcref(__app_machine, 'attendTransition'),
+			['gotoMainMenu']
+		);
 
-
-func __after_to_menu_scene__():
-	__app_machine.attendTransition('gotoMainMenu');
-
+		temp_transition.trigger_transition();
 
 
 # ###################################|
 #               PRIVATE              |
 # ###################################|
+
 
 # - - - - - - - - - -
 # On enter tree Godot Api override
@@ -76,38 +80,6 @@ func __load_player()-> Reference:
 
 
 # - - - - - - - - - -
-# Validation funtion used to verify the state of the transition scene reference and the menu scene
-# This will hold the state machine until all needed references are loaded
-# Can be waited
-# - - - - - - - - - -
-func _validation_transition_scene():
-	while(Application.scene_referencer().getLoadPercent('transition') != 1.0 ||\
-			Application.scene_referencer().getLoadPercent('menu_scene') != 1.0):
-		yield(get_tree(), 'idle_frame');
-
-	var transition_scene = Application.scene_referencer().getLoadReference('transition');
-	var main_menu_scene = Application.scene_referencer().getLoadReference('menu_scene');
-
-	if(!transition_scene || !main_menu_scene):
-		Application.print_msg(
-			GameTypes.kTYPES.APPBEHAVIOR,
-			'Transition reference or main menu invalid ... force quiting'
-		);
-
-		Application.validate_operation(GameTypes.kERROR.FAILED);
-
-	get_tree().root.add_child(transition_scene);
-
-	transition_scene.setUp(
-		get_tree().get_current_scene(),
-		main_menu_scene,
-		funcref(self, '__after_to_menu_scene__')
-	);
-
-	transition_scene.trigger_transition();
-
-
-# - - - - - - - - - -
 # Callback funtion for the application state switch
 # @new_state (int): New state enum value
 # - - - - - - - - - -
@@ -118,15 +90,9 @@ func __on_machine_changed__(new_state : int):
 		GameStates.kAPPSTATES.RESTORE:
 			Application.set_player(__load_player());
 
-			var _requested_thread = Application.request_incubate_thread('transition_load');
-			_requested_thread.define_thread_action(
-				TaskTypes, 'load_transition_scene', _requested_thread
-			);
-			_requested_thread.start_task();
-
 			__app_machine.attendTransition('gotoIntroScene');
 
-
+	
 		# - - - - - - - - - -
 		# On change to INTRO
 		GameStates.kAPPSTATES.INTRO:
