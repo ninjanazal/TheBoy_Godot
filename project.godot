@@ -8,64 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "AppBehavior",
-"language": "GDScript",
-"path": "res://src/Application/app_behavior.gd"
-}, {
-"base": "Reference",
-"class": "AppTransitions",
-"language": "GDScript",
-"path": "res://src/state_machine/transitions/apptransitions.gd"
-}, {
-"base": "Reference",
-"class": "GameStates",
-"language": "GDScript",
-"path": "res://src/game_classes/game_states.gd"
-}, {
-"base": "Reference",
-"class": "GameTypes",
-"language": "GDScript",
-"path": "res://src/global_types/game_types.gd"
-}, {
-"base": "Reference",
-"class": "MachineTransition",
-"language": "GDScript",
-"path": "res://src/state_machine/machineTransition.gd"
-}, {
-"base": "Reference",
-"class": "PlayerClass",
-"language": "GDScript",
-"path": "res://src/game_classes/player_state.gd"
-}, {
-"base": "Resource",
-"class": "ScenePack",
-"language": "GDScript",
-"path": "res://scripted_resource/scripted_resources/scene_reference.gd"
-}, {
-"base": "Node",
-"class": "StateMachine",
-"language": "GDScript",
-"path": "res://src/state_machine/statemachine.gd"
-}, {
-"base": "Reference",
-"class": "TaskTypes",
-"language": "GDScript",
-"path": "res://src/game_classes/task_tipes.gd"
-} ]
-_global_script_class_icons={
-"AppBehavior": "",
-"AppTransitions": "",
-"GameStates": "",
-"GameTypes": "",
-"MachineTransition": "",
-"PlayerClass": "",
-"ScenePack": "",
-"StateMachine": "",
-"TaskTypes": ""
-}
-
 [application]
 
 config/name="Concept1"
@@ -78,7 +20,7 @@ config/icon="res://assets/graphics/logos/voxelLogo.png"
 
 [autoload]
 
-Application="*res://src/Application/application.gd"
+Application="*res://src/Application/Application.cs"
 
 [display]
 
