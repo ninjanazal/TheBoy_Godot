@@ -52,6 +52,17 @@ func define_state(target_state : int):
 
 
 # - - - - - - - - - -
+# Evaluates if a defined transition is valid for the current state
+# @transition_name (String): Transition name to be checked
+# Return (bool): True/False if is a valid transition for the current state
+# - - - - - - - - - -
+func evaluate_state(transition_name : String)-> bool:
+	if(__transition_stack__.keys().has(transition_name)):
+		return __transition_stack__[transition_name].verifyFromState(_current_state);
+	return false;
+
+
+# - - - - - - - - - -
 # Function used to request a machine state switch based on a transition name
 # @transition_name (String): Target transition name
 # - - - - - - - - - -

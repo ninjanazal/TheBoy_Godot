@@ -30,11 +30,6 @@ _global_script_classes=[ {
 "path": "res://src/global_types/game_types.gd"
 }, {
 "base": "Reference",
-"class": "IncubatedThrd",
-"language": "GDScript",
-"path": "res://src/game_classes/incubate_thread.gd"
-}, {
-"base": "Reference",
 "class": "MachineTransition",
 "language": "GDScript",
 "path": "res://src/state_machine/machineTransition.gd"
@@ -64,7 +59,6 @@ _global_script_class_icons={
 "AppTransitions": "",
 "GameStates": "",
 "GameTypes": "",
-"IncubatedThrd": "",
 "MachineTransition": "",
 "PlayerClass": "",
 "ScenePack": "",
@@ -115,11 +109,9 @@ common/enable_pause_aware_picking=true
 
 quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=3
-2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 quality/directional_shadow/size=2048
-quality/shadow_atlas/size=2048
-quality/shadows/filter_mode=0
+quality/shadows/filter_mode.mobile=1
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 quality/shading/force_vertex_shading=true
@@ -130,3 +122,4 @@ gles2/compatibility/disable_half_float=true
 environment/default_clear_color=Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

@@ -1,57 +1,51 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/Characters/Bear/character_bear.gltf" type="PackedScene" id=1]
-[ext_resource path="res://assets/graphics/logos/voxelLogo.png" type="Texture" id=2]
-[ext_resource path="res://assets/Characters/Duck/character_duck.gltf" type="PackedScene" id=3]
-[ext_resource path="res://logic/scenes/game_objects/3D/Pete/Pete.tscn" type="PackedScene" id=4]
+[ext_resource path="res://logic/scenes/game_objects/3D/Bear/char_bear.tscn" type="PackedScene" id=1]
 [ext_resource path="res://logic/scenes/game_scenes/menu_scene/_res/JetBrains_mono_title.tres" type="DynamicFont" id=5]
+[ext_resource path="res://logic/scenes/game_scenes/menu_scene/script/main_menu.gd" type="Script" id=6]
 
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 9, 10 )
 
 [node name="menu_scene" type="Node"]
+script = ExtResource( 6 )
 
 [node name="3d_view" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="3d_view"]
-transform = Transform( -0.100052, 0.0313309, -0.994489, 0.0138134, 0.999452, 0.0300975, 0.994886, -0.0107259, -0.10043, -4.42374, 1.19557, -2.78962 )
+transform = Transform( -0.314687, 0.0329162, -0.948625, 0.0138134, 0.999452, 0.0300975, 0.949095, -0.00363244, -0.314969, -4.42374, 1.19557, -2.78962 )
 cull_mask = 31
 current = true
+fov = 58.1836
 size = 3.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="floor" type="MeshInstance" parent="3d_view"]
-transform = Transform( 1.27531, 0, 0, 0, 1, 0, 0, 0, 1.27531, -1.03709, 0, -1.05051 )
+transform = Transform( 2.35242, 0, 0, 0, 1, 0, 0, 0, 1.60523, 3.26134, 0, -1.05051 )
 mesh = SubResource( 2 )
 material/0 = null
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="DirectionalLight" type="DirectionalLight" parent="3d_view"]
 transform = Transform( 0.934058, -0.268453, -0.235519, 0.351262, 0.809601, 0.470277, 0.0644289, -0.521995, 0.850512, 0, 2.07271, 3.3435 )
 light_color = Color( 0.933333, 0.913725, 0.839216, 1 )
-light_energy = 0.3
+light_energy = 0.392
 light_bake_mode = 2
 shadow_enabled = true
-directional_shadow_mode = 1
+directional_shadow_mode = 0
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 20.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="PrototypePete" parent="3d_view" instance=ExtResource( 4 )]
-transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -1.76699, 0, 0.367717 )
-
-[node name="character_bear" parent="3d_view" instance=ExtResource( 1 )]
-transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -1.50826, 0, -1.53611 )
-
-[node name="character_duck" parent="3d_view" instance=ExtResource( 3 )]
-transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.1739, -2.38419e-07, 0.748836 )
+[node name="Bear_character" parent="3d_view" instance=ExtResource( 1 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -2.29414, 0, -1.0699 )
 
 [node name="front_layer" type="CanvasLayer" parent="."]
 
@@ -65,7 +59,7 @@ __meta__ = {
 [node name="menu_background" type="ColorRect" parent="front_layer/menu_main"]
 anchor_left = -0.0104167
 anchor_top = -0.0185185
-anchor_right = 0.610417
+anchor_right = 0.409
 anchor_bottom = 1.01852
 margin_left = 20.0
 margin_top = 20.0
@@ -88,18 +82,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="game_logo" type="TextureRect" parent="front_layer/menu_main/menu_background/VBoxContainer"]
-margin_right = 1132.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 0, 300 )
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
-
 [node name="game_title" type="Label" parent="front_layer/menu_main/menu_background/VBoxContainer"]
-margin_top = 304.0
-margin_right = 1132.0
-margin_bottom = 370.0
+margin_right = 745.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 5 )
@@ -109,21 +94,38 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="front_layer/menu_main/menu_background/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.298039 )
-margin_top = 374.0
-margin_right = 1132.0
-margin_bottom = 424.0
+margin_top = 70.0
+margin_right = 745.0
+margin_bottom = 120.0
+custom_constants/separation = 50
+
+[node name="btn_play" type="Button" parent="front_layer/menu_main/menu_background/VBoxContainer"]
+margin_top = 124.0
+margin_right = 745.0
+margin_bottom = 484.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "PLAY"
+
+[node name="HSeparator3" type="HSeparator" parent="front_layer/menu_main/menu_background/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.298039 )
+margin_top = 488.0
+margin_right = 745.0
+margin_bottom = 538.0
 custom_constants/separation = 50
 
 [node name="match_container" type="HBoxContainer" parent="front_layer/menu_main/menu_background/VBoxContainer"]
-margin_top = 428.0
-margin_right = 1132.0
-margin_bottom = 628.0
+margin_top = 622.0
+margin_right = 745.0
+margin_bottom = 822.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 3
+size_flags_vertical = 6
 custom_constants/separation = 20
 
 [node name="btn_find" type="Button" parent="front_layer/menu_main/menu_background/VBoxContainer/match_container"]
-margin_right = 556.0
+margin_right = 362.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -131,10 +133,25 @@ custom_fonts/font = ExtResource( 5 )
 text = "FIND"
 
 [node name="btn_host" type="Button" parent="front_layer/menu_main/menu_background/VBoxContainer/match_container"]
-margin_left = 576.0
-margin_right = 1132.0
+margin_left = 382.0
+margin_right = 745.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "HOST"
+
+[node name="HSeparator2" type="HSeparator" parent="front_layer/menu_main/menu_background/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.298039 )
+margin_top = 906.0
+margin_right = 745.0
+margin_bottom = 956.0
+custom_constants/separation = 50
+
+[node name="btn_settings" type="Button" parent="front_layer/menu_main/menu_background/VBoxContainer"]
+margin_top = 960.0
+margin_right = 745.0
+margin_bottom = 1040.0
+rect_min_size = Vector2( 0, 80 )
+custom_fonts/font = ExtResource( 5 )
+text = "Settings"
