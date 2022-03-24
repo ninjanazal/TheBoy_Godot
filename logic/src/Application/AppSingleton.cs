@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Main Concept namespace
@@ -27,6 +28,15 @@ namespace Concept {
 		/// </summary>
 		private AppSingleton() { }
 
+		/// <summary>
+		/// Holds the current core controllers references
+		/// </summary>
+		/// <typeparam name="string">Controller Name</typeparam>
+		/// <typeparam name="BaseController">Defined BaseController tipe</typeparam>
+		/// <returns></returns>
+		private Dictionary<Concept.kControllersTypes, Node> controllers =
+			new Dictionary<Concept.kControllersTypes, Node>();
+
 
 		/// <summary>
 		/// Get singleton function definition
@@ -36,7 +46,6 @@ namespace Concept {
 			if(_instance == null){
 				_instance = new AppSingleton();
 			}
-
 			return _instance;
 		}
 
@@ -62,5 +71,19 @@ namespace Concept {
 				$"{Enum.GetName(typeof(Concept.kComponentTypes), type)} \t ::: \t{msg}";
 			GD.Print(outValue);
 		}
+
+
+		/// <summary>
+		/// Regist a defined controller
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="controller"></param>
+		public void RegistController(Concept.kControllersTypes type, Node controller){
+			if(controllers.ContainsKey(type)){
+				controllers[type] = controller;
+				return;
+			}
+			controllers.Add(type,controller);
+		} 
 	}
 }
