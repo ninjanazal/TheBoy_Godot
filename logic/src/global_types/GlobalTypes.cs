@@ -15,16 +15,19 @@ namespace Concept {
 		CAMERA,
 		CHARACTER,
 		LEVEL,
-		AUDIO
+		AUDIO,
+		CONTROLLER
 	};
 
 	/// <summary>
 	/// Holds the available game controller types
 	/// </summary>
 	public enum kControllersTypes {
+		CORE,
 		BASECONTROLLER,
 		SCENEMANAGER,
 		INPUTMANAGER,
+		AUDIOMANAGER,
 		GAMELOGIC
 	}
 }

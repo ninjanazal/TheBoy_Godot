@@ -10,7 +10,7 @@ namespace Concept {
 	/// <summary>
 	/// Application singleton class object definition
 	/// </summary>
-	public sealed class AppSingleton : iApplication{
+	public sealed class AppSingleton {
 
 		/// <summary>
 		/// Holds instance objected
@@ -57,7 +57,7 @@ namespace Concept {
 			if(_AppNode == null){
 				_AppNode = nodeSingleton;
 				PrintMsg(kComponentTypes.CSHARPAPPLICATION,
-				"Node based connected to logic singleton");
+					"Node based connected to logic singleton");
 			}
 		}
 

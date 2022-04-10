@@ -34,7 +34,7 @@ namespace Concept{
 		/// <summary>
 		/// Event Used to notify the subscrivers on a state change
 		/// </summary>
-		public event BaseEventHandler OnStateChange;
+		private event BaseEventHandler OnStateChange;
 
 		/// <summary>
 		/// Finite state machine constructor
@@ -74,6 +74,21 @@ namespace Concept{
 		/// <param name="initState"></param>
 		public void InitMachine(T initState) => _current_state_ = _last_state_ = initState;
 
+		/// <summary>
+		/// Subscrives to the onState Change event
+		/// </summary>
+		/// <param name="subMethod">Subscrive Callback method</param>
+		public void Subscrive(BaseEventHandler subMethod){
+			OnStateChange += subMethod;
+		}
+
+		/// <summary>
+		/// Unsubscrives to the onState Change event
+		/// </summary>
+		/// <param name="subMethod">Unsubscrive Callback method</param>
+		public void Unsubscrive(BaseEventHandler subMethod){
+			OnStateChange -= subMethod;
+		}
 
 		/// <summary>
 		/// Evaluates a request transition
