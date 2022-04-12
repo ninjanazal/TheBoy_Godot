@@ -1,10 +1,9 @@
-
-
 /// <summary>
-/// Main Concept namespace
+/// Holds the Global types enumeration and definitions
 /// </summary>
-namespace Concept {
 
+
+namespace Concept {
 	/// <summary>
 	/// Holds the component types
 	/// </summary>
@@ -30,4 +29,10 @@ namespace Concept {
 		AUDIOMANAGER,
 		GAMELOGIC
 	}
+
+
+	/// <summary>
+	/// Base event Handler definititon, no arguments
+	/// </summary>
+	public delegate void BaseStateChange<T>(T curr_state);
 }

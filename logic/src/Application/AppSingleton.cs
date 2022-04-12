@@ -34,8 +34,8 @@ namespace Concept {
 		/// <typeparam name="string">Controller Name</typeparam>
 		/// <typeparam name="BaseController">Defined BaseController tipe</typeparam>
 		/// <returns></returns>
-		private Dictionary<Concept.kControllersTypes, Node> controllers =
-			new Dictionary<Concept.kControllersTypes, Node>();
+		private Dictionary<Concept.kControllersTypes, BaseController> controllers =
+			new Dictionary<Concept.kControllersTypes, BaseController>();
 
 
 		/// <summary>
@@ -78,12 +78,30 @@ namespace Concept {
 		/// </summary>
 		/// <param name="type"></param>
 		/// <param name="controller"></param>
-		public void RegistController(Concept.kControllersTypes type, Node controller){
+		public void RegistController(Concept.kControllersTypes type, BaseController controller){
 			if(controllers.ContainsKey(type)){
 				controllers[type] = controller;
-				return;
 			}
-			controllers.Add(type,controller);
-		} 
+			else{
+				controllers.Add(type,controller);
+			}
+
+			PrintMsg(
+				Concept.kComponentTypes.CSHARPAPPLICATION,
+				$"Controller {type} has been registed!"
+			);
+		}
+
+		/// <summary>
+		/// Gets a registed controller by type, if not registed returns null
+		/// </summary>
+		/// <param name="type">Target controller type</param>
+		/// <returns>Controller reference</returns>
+		public BaseController GetController(Concept.kControllersTypes type){
+			if(controllers.ContainsKey(type)){
+				return controllers[type];
+			}
+			return null;
+		}
 	}
 }

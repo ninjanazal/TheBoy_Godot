@@ -7,7 +7,7 @@ using System;
 /// </summary>
 public class BaseController : Node{
 
-	private kControllersTypes _controller_type;
+	protected kControllersTypes _controller_type;
 
 	/// <summary>
 	/// On Controller start function base definition
@@ -18,5 +18,7 @@ public class BaseController : Node{
 			Concept.kComponentTypes.CONTROLLER,
 			 $"Controller {_controller_type} as initialized"
 		);
+
+		AppSingleton.GetSingleton().RegistController(_controller_type, this);
 	}
 }

@@ -34,7 +34,7 @@ namespace Concept{
 		/// <summary>
 		/// Event Used to notify the subscrivers on a state change
 		/// </summary>
-		private event BaseEventHandler OnStateChange;
+		private event BaseStateChange<T> OnStateChange;
 
 		/// <summary>
 		/// Finite state machine constructor
@@ -44,6 +44,19 @@ namespace Concept{
 		public FSMCore(string name, List<FSMTransition<T>> transitions){
 			_name_ = name;
 			_transitions_ = transitions;
+		}
+
+
+		/// <summary>
+		/// Constructor overloading, this will construct and initialize on the defined state
+		/// </summary>
+		/// <param name="name"><State Machine name /param>
+		/// <param name="transitions"List with the state machine transitions></param>
+		/// <param name="initState">Init defined state</param>
+		public FSMCore(string name, List<FSMTransition<T>> transitions, T initState){
+			_name_ = name;
+			_transitions_ = transitions;
+			InitMachine(initState);
 		}
 
 		
@@ -78,7 +91,7 @@ namespace Concept{
 		/// Subscrives to the onState Change event
 		/// </summary>
 		/// <param name="subMethod">Subscrive Callback method</param>
-		public void Subscrive(BaseEventHandler subMethod){
+		public void Subscrive(BaseStateChange<T> subMethod){
 			OnStateChange += subMethod;
 		}
 
@@ -86,7 +99,7 @@ namespace Concept{
 		/// Unsubscrives to the onState Change event
 		/// </summary>
 		/// <param name="subMethod">Unsubscrive Callback method</param>
-		public void Unsubscrive(BaseEventHandler subMethod){
+		public void Unsubscrive(BaseStateChange<T> subMethod){
 			OnStateChange -= subMethod;
 		}
 
@@ -105,7 +118,7 @@ namespace Concept{
 				_last_state_ = _current_state_;
 				_current_state_ = curr_transiton.GetToState();
 				curr_transiton.InvokeOnEnd();
-				OnStateChange.Invoke();
+				OnStateChange.Invoke(_current_state_);
 			}
 		}
 
@@ -117,7 +130,7 @@ namespace Concept{
 		public void ForceCurrentState(T definedState){
 			_last_state_ = _current_state_;
 			_current_state_ = definedState;
-			OnStateChange.Invoke();
+			OnStateChange.Invoke(_current_state_);
 		}
 	}
 }

@@ -14,21 +14,4 @@ public class ApplicationNode : Node {
 	public override void _EnterTree() {
 		AppSingleton.GetSingleton().RegistNodeSingleton(this);
 	}
-
-
-	// + + + + + + + + + + + + + + + + + + + +//
-	//                 PUBLIC                 //
-	// + + + + + + + + + + + + + + + + + + + +//
-
-
-	/// <summary>
-	/// Prints a typed message
-	/// </summary>
-	/// <param name="type">Enumeration kConceptType value</param>
-	/// <param name="msg">String message</param>
-	public void PrintMsg(kComponentTypes type, string msg) {
-		string outValue =
-			$"{Enum.GetName(typeof(Concept.kComponentTypes), type)} \t ::: \t{msg}";
-		GD.Print(outValue);
-	}
 }

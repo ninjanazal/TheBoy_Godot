@@ -1,3 +1,4 @@
+using Concept;
 using System;
 
 /// <summary>
@@ -5,12 +6,11 @@ using System;
 /// </summary>
 public class CoreController : BaseController{
 
+
 	/// <summary>
-	/// List holding toppl with references to the Typed controllers 
-	/// The first element defines the controller type
+	/// Core controller internal finite state machine
 	/// </summary>
-	private (Concept.kControllersTypes, BaseController)[] _managers;
-	
+	private FSMCore<kCoreTransitions> _coreFSM;
 
 	// + + + + + + + + + + + + + + + + + + + +//
 	//                 PUBLIC                 //
@@ -21,26 +21,30 @@ public class CoreController : BaseController{
 	/// Godot API _EnterTree function override
 	/// </summary>
 	public override void _EnterTree() {
-		_managers = new (Concept.kControllersTypes, BaseController)[
-			Enum.GetNames(typeof(Concept.kControllersTypes)).Length	];
-
 		startController(Concept.kControllersTypes.CORE);
+		_coreFSM = new FSMCore<kCoreTransitions>("coreControllerFSM",
+			TransitionPacks.corePack, kCoreTransitions.ANY);
+		
+		_coreFSM.Subscrive(OnStateChange);
 	}
 
 
 	/// <summary>
-	/// Regists, if not define a reference to the manager object
+	/// Godot API _Ready function override
 	/// </summary>
-	/// <param name="type">Enumeration value defining the manager type</param>
-	/// <param name="manager">Manager object reference</param>
-	/// <returns>If the manager was added to the collection</returns>
-	public bool RegistManager(Concept.kControllersTypes type, BaseController manager){
-		if(!Array.Exists<(Concept.kControllersTypes, BaseController)>(_managers, elm =>{
-			return elm.Item1 == type;
-		} )){
-			_managers[(int)type] = (type, manager);
-			return true;
-		}
-		return false;
+	public override void _Ready(){
+		_coreFSM.RequestTransition("onInitialize");
+	}
+
+
+	/// <summary>
+	/// Callback function to handle the internal finite state machine change state event
+	/// </summary>
+	/// <param name="current_state">New State</param>
+	private void OnStateChange(kCoreTransitions current_state){
+		AppSingleton.GetSingleton().PrintMsg(
+			kComponentTypes.CONTROLLER,
+			 $"{this._controller_type}\t >>> On State Change ( {current_state} ) <<<"
+		);
 	}
 }
