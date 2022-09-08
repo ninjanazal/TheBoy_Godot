@@ -12,26 +12,24 @@ config_version=4
 
 config/name="Concept1"
 config/description="Party Voxel Game "
-run/main_scene="res://logic/scenes/game_scenes/Core/GameController/GameController.tscn"
+run/main_scene="res://logic/scenes/Main/main.tscn"
 boot_splash/image="res://assets/graphics/usefull/transparent_128_128.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.0666667, 0.0666667, 0.0705882, 1 )
-config/icon="res://assets/graphics/icons/CatIcon.png"
-
-[autoload]
-
-Application="*res://logic/src/Application/ApplicationNode.cs"
+config/icon="res://assets/graphics/icons/MaBoy_EmuIcon_32.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/size/test_width=640
-window/size/test_height=360
+window/size/resizable=false
+window/size/test_width=768
+window/size/test_height=432
 window/dpi/allow_hidpi=true
 window/handheld/orientation="sensor_landscape"
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
+window/size/resizable.Android=true
 
 [gui]
 
@@ -44,8 +42,6 @@ pointing/emulate_touch_from_mouse=true
 [physics]
 
 common/enable_pause_aware_picking=true
-2d/physics_engine="GodotPhysics"
-3d/physics_engine="GodotPhysics"
 
 [rendering]
 
@@ -66,5 +62,4 @@ batching/parameters/item_reordering_lookahead=256
 gles2/compatibility/disable_half_float=true
 environment/default_clear_color=Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 quality/depth/hdr=false
-environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

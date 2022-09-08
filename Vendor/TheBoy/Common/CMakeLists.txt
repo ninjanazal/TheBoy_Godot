@@ -1,0 +1,16 @@
+message("Including ${CMAKE_CURRENT_SOURCE_DIR}")
+
+set ( SOURCE 
+	${SOURCE}
+	${CMAKE_CURRENT_SOURCE_DIR}/instruction.cpp
+	PARENT_SCOPE
+)
+
+
+set ( HEADERS 
+	${HEADERS}
+	${CMAKE_CURRENT_SOURCE_DIR}/collections.h
+	${CMAKE_CURRENT_SOURCE_DIR}/common.h
+	${CMAKE_CURRENT_SOURCE_DIR}/instruction.h
+	PARENT_SCOPE
+)
