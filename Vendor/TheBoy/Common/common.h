@@ -5,7 +5,6 @@
 #include <map>
 #include <cstdint>
 #include <memory>
-#include <SFML/Graphics.hpp>
 
 
 namespace TheBoy {

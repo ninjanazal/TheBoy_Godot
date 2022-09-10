@@ -1,0 +1,6 @@
+[gd_resource type="GDNativeLibrary" format=2]
+
+[resource]
+reloadable = false
+entry/Windows.64 = "res://logic/libs/win64/libConcept1.dll"
+dependency/Windows.64 = [  ]

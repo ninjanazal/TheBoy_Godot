@@ -92,7 +92,7 @@ namespace TheBoy {
 						sprintf_s(msgBuffer, 64,
 							"-> Ppu Frames: %d", ctrl->getPpu()->getFrameCount());
 
-						ctrl->getView()->setPpuFrameCount(msgBuffer);
+						//ctrl->getView()->setPpuFrameCount(msgBuffer);
 						delete[] msgBuffer;
 
 						ctrl->getPpu()->setInitialTimer(currTick);

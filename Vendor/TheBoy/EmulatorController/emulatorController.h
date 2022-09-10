@@ -4,7 +4,6 @@
 #include <iostream>
 #include <thread>
 
-#include <SFML/Graphics.hpp>
 #include "Cartridge.h"
 #include "cpu.h"
 #include "ram.h"
@@ -14,8 +13,6 @@
 #include "iogb.h"
 #include "timer.h"
 #include "inputController.h"
-
-#include "emulView.h"
 
 /**
  * @brief Core Project Namespace 
@@ -29,7 +26,6 @@ namespace TheBoy {
 	class Lcd;
 	class IO;
 	class Timer;
-	class EmulView;
 	class InputController;
 
 	
@@ -84,12 +80,6 @@ namespace TheBoy {
 		 * @brief Emulator Timer object
 		 */
 		std::shared_ptr<Timer> timer;
-
-		/**
-		 * @brief Current emulator controller view
-		 */
-		std::shared_ptr<EmulView> view;
-
 
 		/// <summary>
 		/// Current emulator input controller
@@ -260,13 +250,6 @@ namespace TheBoy {
 		 * @return std::shared_ptr<Timer> Shared pointer to the inUse Timer
 		 */
 		std::shared_ptr<Timer> getTimer();
-
-
-		/**
-		 * @brief Get the ViewHandler object
-		 * @return std::shared_ptr<EmulView> Shared pointer to the inUse ViewHandler
-		 */
-		std::shared_ptr<EmulView> getView();
 
 
 		/// <summary>

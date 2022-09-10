@@ -276,9 +276,7 @@ namespace TheBoy {
 			"-> ROM Vers  : %2.2X", cart_state->title, cart_state->cart_type, getCartTypeName(),
 			0x20 << cart_state->rom_size, cart_state->ram_size, cart_state->lic_code, getCartLicenseeName(), cart_state->rom_version
 		);
-
-
-		emulCtrl->getView()->setCartInfo(msgBuffer);
+		//emulCtrl->getView()->setCartInfo(msgBuffer);
 		delete[] msgBuffer;
 	}
 
@@ -304,7 +302,7 @@ namespace TheBoy {
 		char* msgBuf(new char[64] {});
 		sprintf_s(msgBuf, 64, "[CARTRIDGE] :: Checksum Result : %2.2X (%X)\n", cart_state->checksum, (x & 0xFF));
 
-		emulCtrl->getView()->setCartChecksum(msgBuf);
+		//emulCtrl->getView()->setCartChecksum(msgBuf);
 		delete[] msgBuf;
 
 		return (x & 0xFF);

@@ -1,5 +1,4 @@
 #include "emulatorController.h"
-#include <SFML/Window.hpp>
 #include <functional>
 
 namespace TheBoy {
@@ -30,8 +29,8 @@ namespace TheBoy {
 		instThread = std::make_unique<std::thread>(&EmulatorController::cpuStep, this, &emu_state, comps.cpu);
 
 		while (emu_state.running) {
-			comps.view->ManageEvents();
-			comps.view->Draw();
+			//comps.view->ManageEvents();
+			//comps.view->Draw();
 			debugOutput();
 		}
 	}
@@ -69,8 +68,6 @@ namespace TheBoy {
 		comps.cpu = std::make_shared<Cpu>(this);
 
 		comps.cart = std::make_shared<Cartridge>(this, rom_path);
-
-		comps.view = std::make_shared<EmulView>(this);
 
 		comps.inputCtrl = std::make_shared<InputController>(this);
 
@@ -154,14 +151,14 @@ namespace TheBoy {
 	/// Gather the input information
 	/// </summary>
 	void EmulatorController::gatherInput() {
-		comps.inputCtrl->getState()->start = getView()->getInputState()->start;
-		comps.inputCtrl->getState()->select = getView()->getInputState()->select;
-		comps.inputCtrl->getState()->a = getView()->getInputState()->a;
-		comps.inputCtrl->getState()->b = getView()->getInputState()->b;
-		comps.inputCtrl->getState()->up = getView()->getInputState()->up;
-		comps.inputCtrl->getState()->down = getView()->getInputState()->down;
-		comps.inputCtrl->getState()->left = getView()->getInputState()->left;
-		comps.inputCtrl->getState()->right = getView()->getInputState()->right;
+		// comps.inputCtrl->getState()->start = getView()->getInputState()->start;
+		// comps.inputCtrl->getState()->select = getView()->getInputState()->select;
+		// comps.inputCtrl->getState()->a = getView()->getInputState()->a;
+		// comps.inputCtrl->getState()->b = getView()->getInputState()->b;
+		// comps.inputCtrl->getState()->up = getView()->getInputState()->up;
+		// comps.inputCtrl->getState()->down = getView()->getInputState()->down;
+		// comps.inputCtrl->getState()->left = getView()->getInputState()->left;
+		// comps.inputCtrl->getState()->right = getView()->getInputState()->right;
 	}
 
 
@@ -258,16 +255,6 @@ namespace TheBoy {
 	}
 
 
-	/**
-	* @brief Get the Timer object
-	* @return std::shared_ptr<Timer> Shared pointer to the inUse Timer
-	*/
-	std::shared_ptr<EmulView> EmulatorController::getView() {
-		if (!comps.timer) {
-			std::cout << "[Emulator] ::: Get View on a null shared!" << std::endl;
-		}
-		return comps.view;
-	}
 
 	/// <summary>
 	/// Gets the Lcd object
