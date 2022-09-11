@@ -107,10 +107,10 @@ for root, dirnames, filenames in os.walk('native'):
   for dir in dirnames:
       modules.append(os.path.join(root,dir))
 
-print('Dir Count -> ' + str(len(modules)))
+#print('Dir Count -> ' + str(len(modules)))
 
 for module in modules:
-    print(module)
+    #print(module)
     env.Append(CPPPATH=[module])
     sources += Glob(os.path.join(module, '*.cpp'))
 
@@ -120,10 +120,10 @@ for root, dirnames, filenames in os.walk('Vendor/'):
   for dir in dirnames:
       modules.append(os.path.join(root,dir))
 
-print('Dir Count -> ' + str(len(modules)))
+#print('Dir Count -> ' + str(len(modules)))
 
 for module in modules:
-    print(module)
+    #print(module)
     env.Append(CPPPATH=[module])
     sources += Glob(os.path.join(module, '*.cpp'))
 

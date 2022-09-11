@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <thread>
-
 #include "Cartridge.h"
 #include "cpu.h"
 #include "ram.h"
@@ -14,6 +13,10 @@
 #include "timer.h"
 #include "inputController.h"
 
+
+namespace Concept1{
+	class Main;
+}
 /**
  * @brief Core Project Namespace 
  */
@@ -172,6 +175,9 @@ namespace TheBoy {
 		 * @brief Destroy the Emulator Controller object
 		 */
 		~EmulatorController();
+
+
+		void iteration(Concept1::Main* main);
 
 		/**
 		 * @brief Initialize the Emulator with a defined size

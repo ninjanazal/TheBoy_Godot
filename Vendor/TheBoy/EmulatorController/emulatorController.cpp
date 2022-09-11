@@ -28,13 +28,14 @@ namespace TheBoy {
 		std::cout << "[Emulator] ::: Starting the emulator update loop" << std::endl;
 		instThread = std::make_unique<std::thread>(&EmulatorController::cpuStep, this, &emu_state, comps.cpu);
 
-		while (emu_state.running) {
+	}
+
+	void EmulatorController::iteration(Concept1::Main* main) {
+			//while (emu_state.running) {
 			//comps.view->ManageEvents();
 			//comps.view->Draw();
 			debugOutput();
-		}
 	}
-
 
 	/**
 	 * @brief Steps the defined cpu
