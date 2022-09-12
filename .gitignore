@@ -21,6 +21,8 @@ bin/
 *.obj
 *.idb
 *.pdb
+*.lib
+*.exp
 
 # Help file
 .scons_node_count

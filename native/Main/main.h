@@ -5,6 +5,8 @@
 #include <Node.hpp>
 #include <LineEdit.hpp>
 #include <TextureRect.hpp>
+#include <ImageTexture.hpp>
+#include <Image.hpp>
 
 #include "emulatorController.h"
 
@@ -31,6 +33,7 @@ namespace Concept1
 
 		void _init();
 		void _ready();
+		void _process(float delta);
 
 	private:
 		GODOT_CLASS(Main, Node);
@@ -38,15 +41,28 @@ namespace Concept1
 		LineEdit* _romPath;
 		
 		/// @brief Reference to the on Scene outTexture
-		TextureRect* _outTexture;
+		TextureRect* _outTextureRect;
 		/// @brief Reference to the on Scene out vRam texture
-		TextureRect* _vRamTexture;
+		TextureRect* _vRamTextureRect;
+
+		Vector2 tileSizeView = Vector2(24, 16); 
+
+		ImageTexture* _outTexture;
+		ImageTexture* _outVRamTexture;
+
+		/// @brief Internal output image
+		Image* _outImage;
+		/// @brief Internal vRam representation
+		Image* _outVRamImage;
+
 		/**
 		 * @brief Pointer to the TheBoy EmulatorController object
 		 */
 		TheBoy::EmulatorController *emulCtrl;
 		/// @brief On Ready gather nodes
 		void OnReadyGets();
+
+		void GenerateTextures();
 	};
 
 } // namespace Concept1

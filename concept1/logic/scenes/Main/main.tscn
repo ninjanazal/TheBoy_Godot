@@ -1,16 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/graphics/icons/MaBoy_EmuIcon_32.png" type="Texture" id=1]
 [ext_resource path="res://resources/graphics/fonts/JetBrainsMono_s30.tres" type="DynamicFont" id=2]
 [ext_resource path="res://resources/graphics/fonts/JetBrainsMono_s20.tres" type="DynamicFont" id=3]
 [ext_resource path="res://logic/src/Main/main.gdns" type="Script" id=4]
-
-[sub_resource type="OpenSimplexNoise" id=1]
-
-[sub_resource type="NoiseTexture" id=2]
-width = 164
-height = 144
-noise = SubResource( 1 )
 
 [node name="main" type="Control"]
 anchor_right = 1.0
@@ -82,26 +75,30 @@ anchor_left = 0.0276042
 anchor_top = 0.0861111
 anchor_right = 0.594271
 anchor_bottom = 0.968518
-stretch_mode = 6
+texture = ExtResource( 1 )
+stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="vramView" type="TextureRect" parent="body"]
-anchor_left = 0.632813
-anchor_top = 0.455556
-anchor_right = 0.961458
+anchor_left = 0.618229
+anchor_top = 0.399074
+anchor_right = 0.983333
 anchor_bottom = 0.967593
-texture = SubResource( 2 )
-stretch_mode = 6
+texture = ExtResource( 1 )
+stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="body"]
-margin_left = 1193.0
-margin_top = 93.0
-margin_right = 1844.0
-margin_bottom = 492.0
+anchor_left = 0.621354
+anchor_top = 0.0861111
+anchor_right = 0.983333
+anchor_bottom = 0.399074
 custom_fonts/normal_font = ExtResource( 3 )
 text = "This a test text"
+__meta__ = {
+"_edit_use_anchors_": true
+}
