@@ -3,6 +3,8 @@
 
 #include <Godot.hpp>
 #include <Node.hpp>
+
+#include <RichTextLabel.hpp>
 #include <LineEdit.hpp>
 #include <TextureRect.hpp>
 #include <ImageTexture.hpp>
@@ -37,32 +39,42 @@ namespace Concept1
 
 	private:
 		GODOT_CLASS(Main, Node);
+		bool _running = false;
+
 		/// @brief Line edit with the rom path
-		LineEdit* _romPath;
-		
+		LineEdit *_romPath;
+
 		/// @brief Reference to the on Scene outTexture
-		TextureRect* _outTextureRect;
+		TextureRect *_outTextureRect;
 		/// @brief Reference to the on Scene out vRam texture
-		TextureRect* _vRamTextureRect;
+		TextureRect *_vRamTextureRect;
 
-		Vector2 tileSizeView = Vector2(24, 16); 
+		Vector2 tileSizeView = Vector2(24, 16);
 
-		ImageTexture* _outTexture;
-		ImageTexture* _outVRamTexture;
+		ImageTexture *_outTexture;
+		ImageTexture *_outVRamTexture;
 
 		/// @brief Internal output image
-		Image* _outImage;
+		Image *_outImage;
 		/// @brief Internal vRam representation
-		Image* _outVRamImage;
+		Image *_outVRamImage;
+		/// @brief 
+		RichTextLabel *_textOut;
 
 		/**
 		 * @brief Pointer to the TheBoy EmulatorController object
 		 */
-		TheBoy::EmulatorController *emulCtrl;
+		TheBoy::EmulatorController *_emulCtrl;
 		/// @brief On Ready gather nodes
 		void OnReadyGets();
+		void OnTextChanged(String newText);
 
+		/// @brief Initial texture generation
 		void GenerateTextures();
+		/// @brief Builds the output string
+		void BuildOutputString();
+		/// @brief Builds the debug texture image
+		void BuildDebugView();
 	};
 
 } // namespace Concept1
