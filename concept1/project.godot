@@ -22,7 +22,6 @@ config/icon="res://assets/graphics/icons/MaBoy_EmuIcon_32.png"
 
 window/size/width=1920
 window/size/height=1080
-window/size/resizable=false
 window/size/test_width=768
 window/size/test_height=432
 window/dpi/allow_hidpi=true

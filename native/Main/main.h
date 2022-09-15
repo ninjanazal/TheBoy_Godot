@@ -5,16 +5,23 @@
 #include <Node.hpp>
 
 #include <RichTextLabel.hpp>
-#include <LineEdit.hpp>
+#include <Label.hpp>
+#include <Button.hpp>
+#include <FileDialog.hpp>
+
 #include <TextureRect.hpp>
 #include <ImageTexture.hpp>
 #include <Image.hpp>
 
+#include <Thread.hpp>
+
 #include "emulatorController.h"
+
 
 namespace Concept1
 {
 	using namespace godot;
+	using namespace TheBoy;
 
 	class Main : public Node
 	{
@@ -41,8 +48,12 @@ namespace Concept1
 		GODOT_CLASS(Main, Node);
 		bool _running = false;
 
+		/// @brief Select rom button
+		Button *_selectBtn;
 		/// @brief Line edit with the rom path
-		LineEdit *_romPath;
+		Label *_romPath;
+		FileDialog* _fileDialog;
+
 
 		/// @brief Reference to the on Scene outTexture
 		TextureRect *_outTextureRect;
@@ -58,16 +69,26 @@ namespace Concept1
 		Image *_outImage;
 		/// @brief Internal vRam representation
 		Image *_outVRamImage;
-		/// @brief 
+		/// @brief
 		RichTextLabel *_textOut;
+
+		Color gbPallet[4] = {
+			Color().hex(0xFFFFFFFF),
+			Color().hex(0xACACACFF),
+			Color().hex(0x555555FF),
+			Color().hex(0x000000FF)
+		};
 
 		/**
 		 * @brief Pointer to the TheBoy EmulatorController object
 		 */
 		TheBoy::EmulatorController *_emulCtrl;
+
+		Thread* _cpuThread;
+
 		/// @brief On Ready gather nodes
 		void OnReadyGets();
-		void OnTextChanged(String newText);
+		void OnFileSelected(String newText);
 
 		/// @brief Initial texture generation
 		void GenerateTextures();
@@ -75,6 +96,9 @@ namespace Concept1
 		void BuildOutputString();
 		/// @brief Builds the debug texture image
 		void BuildDebugView();
+		void addTileToDebug(bit16 addr, int tileId);
+
+		void CpuStep();
 	};
 
 } // namespace Concept1

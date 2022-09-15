@@ -42,10 +42,10 @@ namespace TheBoy {
 	 * @param state Current emulator state
 	 * @param cpu Target step cpu
 	 */
-	void EmulatorController::cpuStep(EmulatorState* state, std::shared_ptr<Cpu> cpu) {
-		while (state->running) {
+	void EmulatorController::cpuStep() {
+		if (emu_state.running) {
 			gatherInput();
-			cpu->step();
+			comps.cpu->step();
 			debugUpdate();
 		}
 	}

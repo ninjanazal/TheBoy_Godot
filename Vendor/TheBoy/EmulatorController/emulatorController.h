@@ -158,12 +158,6 @@ namespace TheBoy {
 		//void manageEvents();
 
 
-		/**
-		 * @brief Steps the defined cpu
-		 * @param state Current emulator state
-		 * @param cpu Target step cpu
-		 */
-		void cpuStep(EmulatorState* state, std::shared_ptr<Cpu> cpu);
 
 	public:
 		/**
@@ -269,6 +263,14 @@ namespace TheBoy {
 		/// </summary>
 		/// <returns>Shared pointer to the inUse Input controller</returns>
 		std::shared_ptr<InputController> getInput();
+
+				/**
+		 * @brief Steps the defined cpu
+		 * @param state Current emulator state
+		 * @param cpu Target step cpu
+		 */
+		void cpuStep();
+
 	};
 	
 } // namespace TheBoy

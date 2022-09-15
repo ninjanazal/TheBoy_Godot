@@ -47,20 +47,39 @@ margin_left = 568.0
 margin_right = 1920.0
 margin_bottom = 54.0
 size_flags_horizontal = 3
-custom_constants/separation = 20
+custom_constants/separation = 50
 alignment = 2
 
-[node name="currentPath" type="LineEdit" parent="CanvasLayer/topBar/HBoxContainer/pathSelection"]
-margin_right = 1352.0
-margin_bottom = 54.0
+[node name="currentPath" type="Label" parent="CanvasLayer/topBar/HBoxContainer/pathSelection"]
+margin_top = 13.0
+margin_right = 1218.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 align = 1
-expand_to_text_length = true
-clear_button_enabled = true
-placeholder_text = "(Insert rom Path)"
-caret_blink = true
+
+[node name="selectButton" type="Button" parent="CanvasLayer/topBar/HBoxContainer/pathSelection"]
+margin_left = 1268.0
+margin_right = 1352.0
+margin_bottom = 54.0
+text = "Select Rom"
+
+[node name="FileDialog" type="FileDialog" parent="CanvasLayer"]
+anchor_top = 0.0694444
+anchor_right = 1.0
+anchor_bottom = 1.0
+window_title = "Open a File"
+resizable = true
+dialog_text = "Select a rom to load"
+dialog_autowrap = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.gb ; Gameboy Rom", "*.gbc ; Gameboy Color Rom" )
+show_hidden_files = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="body" type="ColorRect" parent="."]
 anchor_right = 1.0

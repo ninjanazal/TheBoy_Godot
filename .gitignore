@@ -27,3 +27,5 @@ bin/
 # Help file
 .scons_node_count
 .sconsign.dblite
+
+ROMS/
