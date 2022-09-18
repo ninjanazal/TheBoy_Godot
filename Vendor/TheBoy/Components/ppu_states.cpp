@@ -91,7 +91,7 @@ namespace TheBoy {
 						char* msgBuffer(new char[64] {});
 						sprintf_s(msgBuffer, 64,
 							"-> Ppu Frames: %d", ctrl->getPpu()->getFrameCount());
-
+						ctrl->ppuFrame = ctrl->getPpu()->getFrameCount();
 						//ctrl->getView()->setPpuFrameCount(msgBuffer);
 						delete[] msgBuffer;
 

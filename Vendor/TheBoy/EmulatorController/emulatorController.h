@@ -12,6 +12,7 @@
 #include "iogb.h"
 #include "timer.h"
 #include "inputController.h"
+#include "main.h"
 
 
 namespace Concept1{
@@ -143,7 +144,8 @@ namespace TheBoy {
 		/// <summary>
 		/// Gather the input information
 		/// </summary>
-		void gatherInput();
+		void gatherInput(Concept1::Main* view);
+
 
 	private:
 
@@ -169,6 +171,8 @@ namespace TheBoy {
 		 * @brief Destroy the Emulator Controller object
 		 */
 		~EmulatorController();
+
+		long ppuFrame = 0;
 
 
 		void iteration(Concept1::Main* main);
@@ -269,7 +273,7 @@ namespace TheBoy {
 		 * @param state Current emulator state
 		 * @param cpu Target step cpu
 		 */
-		void cpuStep();
+		void cpuStep(Concept1::Main* view);
 
 	};
 	
